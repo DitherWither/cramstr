@@ -1,16 +1,14 @@
 namespace Shared;
 
 /// <summary>
-/// A single flashcard. Stores the question and the answer for now.
+///     A single flashcard. Stores the question and the answer for now.
 /// </summary>
 public class FlashCard
 {
     /// <summary>
     ///     The question, fairly self explanatory.
     /// </summary>
-    ///
     /// <remarks>
-    ///     
     ///     Should be displayed first.
     ///     Should default to an empty string
     /// </remarks>
@@ -19,7 +17,6 @@ public class FlashCard
     /// <summary>
     ///     Answer to the question, should also have a short explanation
     /// </summary>
-    ///
     /// <remarks>
     ///     Should only be displayed after clicking a button or some other user input
     /// </remarks>
