@@ -1,3 +1,6 @@
+using System.Text.Json.Serialization;
+using MongoDB.Bson.Serialization.Attributes;
+
 namespace Shared;
 
 /// <summary>
@@ -12,6 +15,9 @@ public class FlashCard
     ///     Should be displayed first.
     ///     Should default to an empty string
     /// </remarks>
+    [BsonElement("question")]
+    [JsonInclude]
+    [JsonPropertyName("question")]
     public string Question { get; set; } = "";
 
     /// <summary>
@@ -20,6 +26,9 @@ public class FlashCard
     /// <remarks>
     ///     Should only be displayed after clicking a button or some other user input
     /// </remarks>
+    [BsonElement("answer")]
+    [JsonInclude]
+    [JsonPropertyName("answer")]
     public string Answer { get; set; } = "";
 
     /// <summary>
@@ -37,5 +46,8 @@ public class FlashCard
     ///         Might be ignored, depending upon the user preferences.
     ///     </para>
     /// </remarks>
+    [BsonElement("correctnessScore")]
+    [JsonInclude]
+    [JsonPropertyName("correctnessScore")]
     public int CorrectnessScore { get; set; }
 }
