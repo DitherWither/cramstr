@@ -4,7 +4,6 @@ using WebApi.Services;
 
 namespace WebApi.Controllers;
 
-// FIXME: for some reason, the flashcards show up as null in the response, check why
 
 /// <summary>
 ///     The controller for the flashcard sets.

@@ -1,3 +1,4 @@
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
@@ -21,13 +22,19 @@ public class FlashCardSet
     /// </summary>
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
+    [JsonInclude]
+    [JsonPropertyName("_id")]
     public string? Id { get; set; }
 
     /// <summary>
     ///     An array storing all the flashcards
     ///     Is an empty array by default
     /// </summary>
-    public List<FlashCard> FlashCards { get; }
+    [DataMember]
+    [BsonElement("flashCards")]
+    [JsonInclude]
+    [JsonPropertyName("flashCards")]
+    public List<FlashCard> FlashCards { get; set;  }
 
 
     public List<FlashCard> GetQuiz(int length, bool useCorrectnessScore = true)
