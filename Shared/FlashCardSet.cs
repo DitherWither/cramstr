@@ -25,6 +25,25 @@ public class FlashCardSet
     [JsonInclude]
     [JsonPropertyName("_id")]
     public string? Id { get; set; }
+    
+    
+    /// <summary>
+    ///     The title of the flashcard set
+    /// </summary>
+    [DataMember]
+    [BsonElement("title")]
+    [JsonInclude]
+    [JsonPropertyName("title")]
+    public string? Title { get; set; }
+    
+    /// <summary>
+    ///     The description of the flashcard set
+    /// </summary>
+    [DataMember]
+    [BsonElement("description")]
+    [JsonInclude]
+    [JsonPropertyName("description")]
+    public string? Description { get; set; }
 
     /// <summary>
     ///     An array storing all the flashcards

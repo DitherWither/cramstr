@@ -27,6 +27,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
+// Make the BlazorWasmUI project available as a route
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
