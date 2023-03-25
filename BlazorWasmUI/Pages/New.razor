@@ -1,0 +1,93 @@
+@page "/New"
+@using Shared
+@inject HttpClient Http
+<h1>New cramstr</h1>
+
+
+<div class="grid-2-by-2">
+    <label for="title-input">
+        Title
+    </label>
+    <input id="title-input" type="text" @bind="_flashCardSet.Title"/>
+
+    <label for="description-input">
+        Description
+    </label>
+    <input id="description-input" type="text" @bind="_flashCardSet.Description"/>
+
+    <label for="length-input">
+        Length
+    </label>
+    <input id="length-input" type="number" min="0" @onchange="LengthChanged" value="@_flashCardSet.FlashCards.Count"/>
+</div>
+
+
+@foreach (var flashcard in _flashCardSet.FlashCards)
+{
+    <h2>Flashcard @GetDisplayIndex(flashcard)</h2>
+    <div class="grid-2-by-2">
+        <label for="@GetDisplayIndex(flashcard)-question-input">
+            Question @GetDisplayIndex(flashcard)
+        </label>
+        <input id="@GetDisplayIndex(flashcard)-question-input" type="text" @bind="flashcard.Question"/>
+        <label for="@GetDisplayIndex(flashcard)-answer-input">
+            Answer @GetDisplayIndex(flashcard)
+        </label>
+        <input id="@GetDisplayIndex(flashcard)-answer-input" type="text" @bind="flashcard.Answer"/>
+    </div>
+}
+
+
+<button @onclick="Save">Save</button>
+
+@code {
+    private readonly FlashCardSet _flashCardSet = new(new List<FlashCard>(3));
+
+    private async Task Save()
+    {
+    // make a call to the API to save the flash card set
+        await Http.PostAsJsonAsync("api/flashcardsets", _flashCardSet);
+    }
+
+    private void LengthChanged(ChangeEventArgs changeEvent)
+    {
+    // This is a bit of a hack, but it works
+    // The changeEvent.Value is an object, but it stores an int, so we need to first convert it to a string, then to an int
+        var length = int.Parse(changeEvent.Value.ToString());
+
+    // If the length is the same as the number of flash cards or is negative, do nothing
+        if (_flashCardSet.FlashCards.Count == length || length < 0)
+        {
+            return;
+        }
+
+    // If the length is less than the number of flash cards, remove the extra flash cards from the end of the list
+    // If the length is greater than the number of flash cards, add the missing flash cards to the end of the list
+        if (_flashCardSet.FlashCards.Count > length)
+        {
+    // Remove the extra flash cards
+            _flashCardSet.FlashCards.RemoveRange(length, _flashCardSet.FlashCards.Count - length);
+        }
+        else
+        {
+    // Add the missing flash cards
+            _flashCardSet.FlashCards.AddRange(Enumerable.Range(0, length - _flashCardSet.FlashCards.Count)
+                .Select(_ => new FlashCard()));
+        }
+    }
+
+    private int GetDisplayIndex(FlashCard flashCard)
+    {
+        return _flashCardSet.FlashCards.IndexOf(flashCard) + 1;
+    }
+
+}
+
+<style>
+    
+.grid-2-by-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+}
+</style>

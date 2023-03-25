@@ -20,7 +20,7 @@ app.MapControllers();
 app.RunProxy(proxy => proxy
     .UseHttp((context, args) =>
     {
-        if(context.Request.Path.StartsWithSegments("/api"))
+        if (context.Request.Path.StartsWithSegments("/api"))
             return properties.GetSection("ApiUrl").Value;
         return properties.GetSection("FrontendUrl").Value;
     }));

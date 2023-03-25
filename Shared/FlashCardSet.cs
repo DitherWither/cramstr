@@ -25,8 +25,8 @@ public class FlashCardSet
     [JsonInclude]
     [JsonPropertyName("_id")]
     public string? Id { get; set; }
-    
-    
+
+
     /// <summary>
     ///     The title of the flashcard set
     /// </summary>
@@ -35,7 +35,7 @@ public class FlashCardSet
     [JsonInclude]
     [JsonPropertyName("title")]
     public string? Title { get; set; }
-    
+
     /// <summary>
     ///     The description of the flashcard set
     /// </summary>
@@ -53,7 +53,7 @@ public class FlashCardSet
     [BsonElement("flashCards")]
     [JsonInclude]
     [JsonPropertyName("flashCards")]
-    public List<FlashCard> FlashCards { get; set;  }
+    public List<FlashCard> FlashCards { get; set; }
 
 
     public List<FlashCard> GetQuiz(int length, bool useCorrectnessScore = true)
