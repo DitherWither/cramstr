@@ -79,7 +79,7 @@ public class FlashCardSetService
     public async Task CreateAsync(FlashCardSet flashCardSet)
     {
         flashCardSet.Id = null; // Make sure the id is null
-        
+
         // Create the flashcard set with a new id
         await _flashCardSetsCollection.InsertOneAsync(flashCardSet);
     }

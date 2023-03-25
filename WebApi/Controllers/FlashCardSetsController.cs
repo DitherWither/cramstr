@@ -4,7 +4,6 @@ using WebApi.Services;
 
 namespace WebApi.Controllers;
 
-
 /// <summary>
 ///     The controller for the flashcard sets.
 ///     It is responsible for handling the HTTP requests and responses for the flashcard sets.
@@ -73,11 +72,12 @@ public class FlashCardSetsController
     [HttpPost]
     public async Task<FlashCardSet> Create(FlashCardSet flashCardSet)
     {
-        Console.WriteLine($"The first flashcard's question is: {flashCardSet.FlashCards[0].Question}");
-        
+        Console.WriteLine(
+            $"The first flashcard's question is: {flashCardSet.FlashCards[0].Question}");
+
         // Create the flashcard set
         await _flashCardSetService.CreateAsync(flashCardSet);
-        
+
 
         // Return the new flashcard set. This is done so that the assigned id is returned
         return flashCardSet;
