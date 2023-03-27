@@ -1,0 +1,43 @@
+<Card Margin="new FluentMargin().Is2" Padding="new FluentPadding().Is2">
+        <CardTitle TextAlignment="TextAlignment.Center" Margin="new FluentMargin().Is3">@FlashCard.Question</CardTitle>
+        <Button @onclick="ShowAnswer" Color="Color.Primary">Show</Button>
+        @if (showAnswer)
+        {
+            <Heading TextAlignment="TextAlignment.Center" Margin="new FluentMargin().Is2" Size="HeadingSize.Is4">@FlashCard.Answer</Heading>
+            <Row Margin="new FluentMargin().Is2">
+                <Text TextAlignment="TextAlignment.Center">Was your answer correct?</Text>
+            </Row>
+            <Row Margin="new FluentMargin().Is2">
+                <Button @onclick="IncrementCorrectnessScore" Color="Color.Success">Yes</Button>
+                <Button @onclick="DecrementCorrectnessScore" Color="Color.Warning">No</Button>
+            </Row>
+        }
+</Card>
+
+@* TODO: Remove this before push *@
+<Text>Correctness Score: @FlashCard.CorrectnessScore</Text>
+
+
+@code {
+
+    [Parameter]
+    public FlashCard FlashCard { get; set; }
+
+    private bool showAnswer;
+
+    private void ShowAnswer()
+    {
+        showAnswer = true;
+    }
+
+    private void IncrementCorrectnessScore()
+    {
+        FlashCard.CorrectnessScore++;
+    }
+
+    private void DecrementCorrectnessScore()
+    {
+        FlashCard.CorrectnessScore--;
+    }
+
+}

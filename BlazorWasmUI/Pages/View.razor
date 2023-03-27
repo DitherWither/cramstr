@@ -1,10 +1,27 @@
 @page "/view/{Id}"
-<h3>View @Id</h3>
+@using ApiClient
 
+<Jumbotron>
+    <JumbotronTitle>@_flashCardSet.Title</JumbotronTitle>
+    <JumbotronSubtitle>@_flashCardSet.Description</JumbotronSubtitle>
+</Jumbotron>
+
+@foreach(var flashCard in _flashCardSet.FlashCards)
+{
+    <FlashCardView FlashCard="flashCard"/>
+}
 
 @code {
 
     [Parameter]
     public string Id { get; set; }
+
+    private FlashCardSet _flashCardSet = new(new List<FlashCard>());
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        _flashCardSet = await FlashCardSetClient.GetByIdAsync(Id) ?? new FlashCardSet(new List<FlashCard>());
+    }
 
 }

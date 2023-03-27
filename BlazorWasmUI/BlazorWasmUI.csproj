@@ -8,10 +8,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Blazorise.Bulma" Version="1.2.2" />
-        <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.2.2" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.3" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.3" PrivateAssets="all" />
+        <PackageReference Include="Blazorise.Bulma" Version="1.2.2"/>
+        <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.2.2"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.3"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.3" PrivateAssets="all"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -21,7 +21,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Shared\Shared.csproj" />
+        <ProjectReference Include="..\ApiClient\ApiClient.csproj"/>
+        <ProjectReference Include="..\Shared\Shared.csproj"/>
     </ItemGroup>
 
 </Project>
