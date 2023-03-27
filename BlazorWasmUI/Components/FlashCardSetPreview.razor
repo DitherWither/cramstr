@@ -1,0 +1,15 @@
+<Card>
+    <Link To=@($"/view/{FlashCardSet.Id}")>
+        <CardBody>
+            <CardTitle>@FlashCardSet.Title</CardTitle>
+            <CardSubtitle>@FlashCardSet.Description</CardSubtitle>
+        </CardBody>
+    </Link>
+</Card>
+
+@code {
+
+    [Parameter]
+    public FlashCardSet FlashCardSet { get; set; }
+
+}

@@ -1,25 +1,15 @@
 ﻿@page "/"
-@using Shared
-@inject HttpClient Http
 
-<h1>List of Cramstrs</h1>
-<button @onclick="GetQuestionSets">Get all question sets</button>
+<h1 class="title">List of Cramstrs</h1>
+<Button @onclick="GetQuestionSets">Get all question sets</Button>
 
-@foreach (var flashCardSet in _flashCardSets)
-{
-    <div>
-        <h2>@flashCardSet.Title</h2>
-        <p>@flashCardSet.Description</p>
-        @foreach (var flashCard in flashCardSet.FlashCards)
-        {
-            <div>
-                <h3>@flashCard.Question</h3>
-                <p>@flashCard.Answer</p>
-                <p>@flashCard.CorrectnessScore</p>
-            </div>
-        }
-    </div>
-}
+<CardDeck>
+
+    @foreach (var flashCardSet in _flashCardSets)
+    {
+        <FlashCardSetPreview flashCardSet="@flashCardSet"/>
+    }
+</CardDeck>
 
 <a href="/New">Create a new Cramstr</a>
 
